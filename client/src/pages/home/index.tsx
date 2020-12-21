@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
+import Transcribe from '../../components/Transcribe';
 import { createMeeting, getMeeting } from '../../services';
 
 const HomePage: React.FC  = () => {
@@ -43,6 +44,7 @@ const HomePage: React.FC  = () => {
       <button onClick={joinHost}>
         Join
       </button>
+      <Transcribe />
     </>
   )
 }

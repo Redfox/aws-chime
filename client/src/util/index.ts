@@ -10,8 +10,8 @@ const eventStreamMarshaller = new marshaller.EventStreamMarshaller(util_utf8_nod
 
 export function createPresignedUrl(sampleRate: number) {
   let endpoint = "transcribestreaming.us-east-1.amazonaws.com:8443";
-  const accessId = 'AKIAJJHMMILMELLTKZLQ';
-  const secretKey = 'r/wXDLedHfngiumdWWfIlbHcSAiI5Eb+9oOl0cJJ';
+  const accessId = 'ACCESSID';
+  const secretKey = 'SECRETKEY';
 
   return createPresignedURL(
     'GET',
@@ -49,6 +49,7 @@ export function convertAudioToBinaryMessage(audioChunk: any, inputSampleRate: an
 export function handleNewMessage(message: any) {
   let messageWrapper = eventStreamMarshaller.unmarshall(new Buffer(message.data));
   let messageBody = JSON.parse(String.fromCharCode.apply(String, messageWrapper.body));
+  console.log(JSON.stringify(messageBody));
   if (messageWrapper.headers[":message-type"].value === "event") {
     handleEventStreamMessage(messageBody);
     return messageBody;
