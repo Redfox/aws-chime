@@ -10,8 +10,8 @@ const eventStreamMarshaller = new marshaller.EventStreamMarshaller(util_utf8_nod
 
 export function createPresignedUrl(sampleRate: number) {
   let endpoint = "transcribestreaming.us-east-1.amazonaws.com:8443";
-  const accessId = 'AKIAJJHMMILMELLTKZLQ';
-  const secretKey = 'r/wXDLedHfngiumdWWfIlbHcSAiI5Eb+9oOl0cJJ';
+  const accessId = '';
+  const secretKey = '';
 
   return v4.createPresignedURL(
     'GET',

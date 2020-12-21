@@ -14,9 +14,15 @@ routes.get('/', (_, res) => {
 routes.post('/meetings', async (req, res) => {
   const { meetingToken, meetingRegion } = req.body;
 
-  const mettingResponse = await CreateMettingService.exec({ meetingToken, meetingRegion });
+  try {
 
-  return res.status(200).json(mettingResponse)
+    const mettingResponse = await CreateMettingService.exec({ meetingToken, meetingRegion });
+  
+    return res.status(200).json(mettingResponse)
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: 'internal server error' })
+  }
 });
 
 routes.get('/meetings/:token', async (req, res) => {
