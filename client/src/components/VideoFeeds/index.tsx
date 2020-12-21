@@ -29,7 +29,7 @@ const VideoFeeds: React.FC = () => {
         setVideoTiles((tiles) => {
           return tiles.filter((id) => id !== tileId)
         })
-      }
+      },
     };
 
     session.audioVideo.addObserver(observer);

@@ -11,6 +11,7 @@ const MeetingSessionManager: React.FC = () => {
     try {
       console.warn('Starting audio/video conference.', session.audioVideo)
       session.audioVideo.start();
+
     } catch (err) {
       console.log(err)
     }
