@@ -7,7 +7,7 @@ interface Props {
 
 class GetMettingService {
   async exec({ token, hash }: Props) {
-    const data = await getMeeting(token, hash);
+    const data = await getMeeting(token);
 
     if (!data.Items || data.Items?.length === 0) throw new Error('Meeting not found.')
 

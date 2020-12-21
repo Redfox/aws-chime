@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import { AudioVideoObserver } from 'amazon-chime-sdk-js';
 
 import { MeetingSessionContext } from '../../context/MeetingSessionContext';
@@ -39,8 +39,16 @@ const VideoFeeds: React.FC = () => {
     }
   }, [session]);
 
+  const handleSharingScreen = useCallback(async () => {
+    if(!session) return;
+
+    await session.audioVideo.startContentShareFromScreenCapture();
+
+  }, [session])
+
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
+      <button type="button" onClick={handleSharingScreen}>Share</button>
       {videoTiles.map(id => (
         <VideoTile id={id} />
       ))}

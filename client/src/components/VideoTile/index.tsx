@@ -1,8 +1,9 @@
-import { useRef, useEffect, useContext } from 'react';
+import { useRef, useEffect, useContext, useCallback, useState } from 'react';
 
 import { MeetingSessionContext } from '../../context/MeetingSessionContext';
 
 const VideoTile: React.FC<{ id: number }> = ({ id }) => {
+  const [muted, setMuted] = useState(false);
   const session = useContext(MeetingSessionContext);
   const videoElementRef = useRef<HTMLVideoElement | null>(null);
 
@@ -20,11 +21,26 @@ const VideoTile: React.FC<{ id: number }> = ({ id }) => {
     }
   }, [session, id]);
 
+  const handleMuteCam = useCallback(() => {
+    if(!session) return ;
+
+    if(muted) {
+      console.log('start')
+      session.audioVideo.realtimeUnmuteLocalAudio()
+      setMuted(false);
+    } else {
+      console.log('stop')
+      session.audioVideo.realtimeMuteLocalAudio()
+      setMuted(true);
+    }
+  }, [session, muted, setMuted])
+
   return (
-    <div>
-      <video
+    <div style={{ flex: 1 }}>
+      <video style={{ width: '100%' }}
         ref={videoElementRef}
       ></video>
+      <button type="button" onClick={handleMuteCam}>mute cam</button>
     </div>
   )
 }

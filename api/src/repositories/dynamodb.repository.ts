@@ -11,23 +11,22 @@ export const getMeeting = (token: string, hash: string) => {
   const params = {
     TableName: DDB_CHIMEMEETINGS,
     KeyConditionExpression:
-      'meetingid = :meetingid AND meetinghash = :meetinghash',
+      'meetingid = :meetingid',
     ExpressionAttributeValues: {
       ':meetingid': token,
-      ':meetinghash': hash,
     },
   }
 
   return ddbClient.query(params).promise()
 }
 
-export const saveMeeting = (meeting: any, token: string, hash: string) => {
+export const saveMeeting = (meeting: any, token: string) => {
   const ttl = ~~(+Date.now() / 1000) + 60 * 60 * 24 // :: 24h
   const params = {
     TableName: DDB_CHIMEMEETINGS,
     Item: {
       meetingid: token,
-      meetinghash: hash,
+      meetinghash: 'hash',
       meeting,
       TTL: `${ttl}`,
     },

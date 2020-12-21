@@ -52,9 +52,9 @@ export async function connectToSession(meeting: any, ticket: string) {
   return meetingSession;
 }
 
-export async function getMeeting(token: string, hash: string) {
+export async function getMeeting(token: string) {
   try { 
-    const response = await api.get(`/meetings/${token}/${hash}`)
+    const response = await api.get(`/meetings/${token}`)
     return response.data;
   } catch (error) { 
     console.error('Error encountered while retrieving meeting:', error)

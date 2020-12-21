@@ -21,8 +21,8 @@ const AudioInputDevice: React.FC = () => {
           return
         }
 
-        console.log('Registering audio input device:', devices[0])
-        const { deviceId } = devices[0];
+        console.log('Registering audio input device:', devices[devices.length - 1])
+        const { deviceId } = devices[devices.length - 1];
         return session.audioVideo.chooseAudioInputDevice(deviceId);
       })
       .catch((err) => {

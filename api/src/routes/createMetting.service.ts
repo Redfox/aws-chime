@@ -22,7 +22,7 @@ class CreateMettingService {
     const { Meeting } = await chimeClient.createMeeting(request).promise();
     const hash = ClientRequestToken.slice(0, 6).toUpperCase();
 
-    await saveMeeting(Meeting, meetingToken, hash);
+    await saveMeeting(Meeting, meetingToken);
     
     return {
       meeting: Meeting,

@@ -19,7 +19,7 @@ routes.post('/meetings', async (req, res) => {
   return res.status(200).json(mettingResponse)
 });
 
-routes.get('/meetings/:token/:hash', async (req, res) => {
+routes.get('/meetings/:token', async (req, res) => {
   const { token, hash } = req.params;
  
   const mettingResponse = await GetMettingService.exec({ token, hash });

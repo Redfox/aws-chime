@@ -5,21 +5,17 @@ import { createMeeting, getMeeting } from '../../services';
 const HomePage: React.FC  = () => {
   const navigate = useNavigate();
   const [sessionName, setSessionName] = useState('');
-  const [joinCode, setJoinCode] = useState('');
 
   const handleHost = useCallback(async () => {
     const meetingInfo = await createMeeting(sessionName);
     
     if(!meetingInfo) return;
 
-    console.log()
-
-    const { meeting, meetingToken, joinCode } = meetingInfo;
+    const { meeting, meetingToken } = meetingInfo;
 
     navigate('/meeting', {
       state: {
         meeting,
-        joinCode,
         sessionName: meetingToken,
       }
     })
@@ -27,20 +23,19 @@ const HomePage: React.FC  = () => {
   }, [sessionName, navigate]);
 
   const joinHost = useCallback(async () => {
-    const meeting = await getMeeting(sessionName, joinCode);
+    const meeting = await getMeeting(sessionName);
 
     if(meeting) {
       navigate('/meeting', {
-        state: { meeting, sessionName, joinCode },
+        state: { meeting, sessionName },
       });
     }
-  }, [sessionName, joinCode, navigate])
+  }, [sessionName, navigate])
 
   return (
     <>
       <h1>CreateSession</h1>
       <input value={sessionName} onChange={(e) => setSessionName(e.target.value)} />
-      <input value={joinCode} onChange={(e) => setJoinCode(e.target.value)} />
 
       <button onClick={handleHost}>
         host
