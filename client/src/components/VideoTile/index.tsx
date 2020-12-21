@@ -25,11 +25,11 @@ const VideoTile: React.FC<{ id: number }> = ({ id }) => {
     if(!session) return ;
 
     if(muted) {
-      console.log('start')
+      // console.log('start')
       session.audioVideo.realtimeUnmuteLocalAudio()
       setMuted(false);
     } else {
-      console.log('stop')
+      // console.log('stop')
       session.audioVideo.realtimeMuteLocalAudio()
       setMuted(true);
     }

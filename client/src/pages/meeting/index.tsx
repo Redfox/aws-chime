@@ -15,10 +15,6 @@ const MeetingScreen: React.FC  = () => {
   const { state } = useLocation();
   const [sessionInfo] = useState<{meeting: any}>(state as any);
 
-  useEffect(() => {
-    console.log(sessionInfo);
-  }, [sessionInfo])
-
   return sessionInfo ? (
     <MeetingSessionContextProvider meeting={sessionInfo.meeting}>
       <MeetingSessionManager />

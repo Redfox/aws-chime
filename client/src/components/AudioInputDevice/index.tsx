@@ -13,7 +13,7 @@ const AudioInputDevice: React.FC = () => {
       return;
     }
 
-    console.log('session', session);
+    // console.log('session', session);
 
     session.audioVideo
       .listAudioInputDevices()
@@ -32,11 +32,10 @@ const AudioInputDevice: React.FC = () => {
 
         navigator.mediaDevices.getUserMedia({ video: false, audio: true })
             .then(function(stream) {
+              console.log(stream);
               micStream.setStream(stream);
 
               let url = createPresignedUrl(inputSampleRate);
-
-              // url = 'wss://transcribestreaming.us-east-1.amazonaws.com:8443/stream-transcription-websocket?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJJHMMILMELLTKZLQ%2F20201221%2Fus-east-1%2Ftranscribe%2Faws4_request&X-Amz-Date=20201221T181218Z&X-Amz-Expires=15&X-Amz-Signature=7e59e62e98791dfeb72ceee6aae9c6f0886ed990e92822c7c661cc221d91c9eb&X-Amz-SignedHeaders=host&language-code=en-US&media-encoding=pcm&sample-rate=44100';
 
               const socket = new WebSocket(url);
               socket.binaryType = "arraybuffer";
@@ -74,7 +73,8 @@ const AudioInputDevice: React.FC = () => {
             console.log('format', format);
           });
 
-        console.log('Registering audio input device:', devices[devices.length - 1])
+        // console.log('Registering audio input device:', devices[devices.length - 1])
+        console.log('device', devices);
         const { deviceId } = devices[devices.length - 1];
         return session.audioVideo.chooseAudioInputDevice(deviceId);
       })

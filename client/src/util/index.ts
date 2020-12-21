@@ -1,4 +1,4 @@
-import v4 from 'aws-signature-v4';
+import { createPresignedURL } from '../util/aws-signature-v4';
 import crypto from 'crypto';
 import Mic from 'microphone-stream';
 import { downsampleBuffer, pcmEncode, getAudioEventMessage  } from '../util/audioUtils';
@@ -10,10 +10,10 @@ const eventStreamMarshaller = new marshaller.EventStreamMarshaller(util_utf8_nod
 
 export function createPresignedUrl(sampleRate: number) {
   let endpoint = "transcribestreaming.us-east-1.amazonaws.com:8443";
-  const accessId = '';
-  const secretKey = '';
+  const accessId = 'AKIAJJHMMILMELLTKZLQ';
+  const secretKey = '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';
 
-  return v4.createPresignedURL(
+  return createPresignedURL(
     'GET',
     endpoint,
     '/stream-transcription-websocket',
@@ -49,13 +49,12 @@ export function convertAudioToBinaryMessage(audioChunk: any, inputSampleRate: an
 export function handleNewMessage(message: any) {
   let messageWrapper = eventStreamMarshaller.unmarshall(new Buffer(message.data));
   let messageBody = JSON.parse(String.fromCharCode.apply(String, messageWrapper.body));
-  console.log(messageBody)
-  // if (messageWrapper.headers[":message-type"].value === "event") {
-  //   handleEventStreamMessage(messageBody);
-  //   return messageBody;
-  // }
+  if (messageWrapper.headers[":message-type"].value === "event") {
+    handleEventStreamMessage(messageBody);
+    return messageBody;
+  }
 
-  // console.error('erro new message');
+  console.error('erro new message');
 
   return null;
 }

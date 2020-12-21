@@ -16,12 +16,12 @@ const VideoInputDevice: React.FC = () => {
           return
         }
 
-        console.log(
-          'Registering video input device:',
-          devices[devices.length - 1]
-        )
+        // console.log(
+        //   'Registering video input device:',
+        //   devices[devices.length - 1]
+        // )
         const { deviceId } = devices[devices.length - 1];
-        console.log('audio', session.audioVideo)
+        // console.log('audio', session.audioVideo)
         return session.audioVideo.chooseVideoInputDevice(deviceId);
       })
       .then(() => session.audioVideo.startLocalVideoTile())
