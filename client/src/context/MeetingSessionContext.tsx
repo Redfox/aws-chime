@@ -1,7 +1,7 @@
 import { DefaultMeetingSession } from 'amazon-chime-sdk-js';
 import { createContext, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { getParticipantJoinTicker, connectToSession } from '../services';
+import { getParticipantJoinTicket, connectToSession } from '../services';
 
 export const MeetingSessionContext = createContext<DefaultMeetingSession | null>(null);
 
@@ -10,7 +10,7 @@ export const MeetingSessionContextProvider: React.FC<{ meeting: any }> = ({ meet
   const [session, setSession] = useState<null | DefaultMeetingSession>(null);
 
   useEffect(() => {
-    getParticipantJoinTicker(meeting.MeetingId, userid)
+    getParticipantJoinTicket(meeting.MeetingId, userid)
       .then((ticket) => connectToSession(meeting, ticket))
       .then((session) => {
         setSession(session);
@@ -20,7 +20,7 @@ export const MeetingSessionContextProvider: React.FC<{ meeting: any }> = ({ meet
             setSession(null);
           },
           audioVideoDidStart: () => {
-            console.log('status:');
+            console.log('audio video start');
           }
         })
       })

@@ -29,7 +29,7 @@ export async function createMeeting(meetingToken: string, meetingRegion = 'us-ea
   }
 }
 
-export async function getParticipantJoinTicker(meetingid: string, userid: string) {
+export async function getParticipantJoinTicket(meetingid: string, userid: string) {
   try {
     const body = { meetingid, userid }
     const response = await api.post('/sessions/join', body);

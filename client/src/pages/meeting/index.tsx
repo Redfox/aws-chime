@@ -4,8 +4,10 @@ import { useLocation } from "react-router-dom";
 import { MeetingSessionContextProvider } from '../../context/MeetingSessionContext';
 import MeetingInfo from '../../components/MeetingInfo';
 import MeetingSessionManager from "../../components/MeetingSessionManager";
+import VideoInputDevice from '../../components/VideosInputDevice';
 import AudioInputDevice from '../../components/AudioInputDevice';
 import AudioSpeaker from "../../components/AudioSpearker";
+import VideoFeeds from "../../components/VideoFeeds";
 
 const MeetingScreen: React.FC  = () => {
   const { state } = useLocation();
@@ -25,6 +27,9 @@ const MeetingScreen: React.FC  = () => {
 
       <AudioInputDevice />
       <AudioSpeaker />
+
+      <VideoInputDevice />
+      <VideoFeeds />
 
       <MeetingInfo sessionInfo={sessionInfo} />
     </MeetingSessionContextProvider>
