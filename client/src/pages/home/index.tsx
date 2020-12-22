@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Transcribe from '../../components/Transcribe';
 import { createMeeting, getMeeting } from '../../services';
 
+import { Container } from './styles';
+
 const HomePage: React.FC  = () => {
   const navigate = useNavigate();
   const [sessionName, setSessionName] = useState('');
@@ -34,8 +36,8 @@ const HomePage: React.FC  = () => {
   }, [sessionName, navigate])
 
   return (
-    <>
-      <h1>CreateSession</h1>
+    <Container>
+      <h1>Session</h1>
       <input value={sessionName} onChange={(e) => setSessionName(e.target.value)} />
 
       <button onClick={handleHost}>
@@ -44,8 +46,7 @@ const HomePage: React.FC  = () => {
       <button onClick={joinHost}>
         Join
       </button>
-      <Transcribe />
-    </>
+    </Container>
   )
 }
 

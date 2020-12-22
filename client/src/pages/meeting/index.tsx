@@ -11,6 +11,17 @@ import VideoFeeds from "../../components/VideoFeeds";
 
 import Messaging from '../../components/Messaging';
 
+import { 
+  Container, 
+  VideoContainer, 
+  Infos, 
+  Chat, 
+  Message, 
+  MessagesContainer,
+  InputContainer,
+  Transcribe
+} from './styles';
+
 const MeetingScreen: React.FC  = () => {
   const { state } = useLocation();
   const [sessionInfo] = useState<{meeting: any}>(state as any);
@@ -36,6 +47,34 @@ const MeetingScreen: React.FC  = () => {
   ) : (
     <></>
   )
+
+  // return (
+  //   <Container>
+  //     <VideoContainer>
+  //       <video />
+  //       <video />
+  //     </VideoContainer>
+  //     <Infos>
+  //       <Transcribe>
+  //       <MessagesContainer>
+  //         </MessagesContainer>
+  //       </Transcribe>
+  //       <Chat>
+  //         <h1>Chat</h1>
+  //         <MessagesContainer>
+  //           <Message>
+  //             <span>Nome</span>
+  //             <p>Message message de message</p>
+  //           </Message>
+  //         </MessagesContainer>
+  //         <InputContainer>
+  //           <input />
+  //           <button>enviar</button>
+  //         </InputContainer>
+  //       </Chat>
+  //     </Infos>
+  //   </Container>
+  // )
 }
 
 export default MeetingScreen;

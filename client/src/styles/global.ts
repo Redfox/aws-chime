@@ -6,7 +6,12 @@ export default createGlobalStyle`
     margin: 0;
   }
 
+  #root {
+    height: 100%;
+  }
+
   body {
     background: #e2e2e2;
+    height: 100vh;
   }
 `;

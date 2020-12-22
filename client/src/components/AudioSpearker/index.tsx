@@ -11,8 +11,9 @@ const AudioSpeaker: React.FC = () => {
 
     const audioElement = audioElementRef.current;
 
-    if(audioElement)
+    if(audioElement) {
       session.audioVideo.bindAudioElement(audioElement);
+    }
 
     return () => {
       session.audioVideo.unbindAudioElement();
